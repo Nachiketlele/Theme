@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+import { useContext } from 'react';
 import './App.css';
+import Navbar from './component/Navbar';
+import { ThemeContext } from './context/ThemeContext';
+import { Switch,Stack } from '@chakra-ui/react'
 
 function App() {
+  const {isLight,toogletheme} = useContext(ThemeContext)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`App ${isLight? "light" : "dark"}`}>
+        <Navbar/>
+    <Stack direction='row'>
+    <Switch className={`App ${isLight? "light" : "dark"}`} onChange={toogletheme}  colorScheme='teal' size='lg' />
+  </Stack>
     </div>
   );
 }
